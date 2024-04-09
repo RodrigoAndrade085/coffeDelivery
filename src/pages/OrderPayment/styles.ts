@@ -5,8 +5,9 @@ import { BiDollar } from 'react-icons/bi'
 import { CiMoneyBill } from 'react-icons/ci'
 import { AiOutlineBank, AiOutlineCreditCard } from 'react-icons/ai'
 import { FaRegTrashAlt } from 'react-icons/fa'
+import { transform } from 'typescript'
 
-export const Container = styled.div`
+export const Container = styled.form`
   display: flex;
   padding-top: 4vh;
   justify-content: space-between;
@@ -115,6 +116,12 @@ export const Input = styled.input<{ width?: string }>`
   border-radius: 0.25rem;
   border: 1px solid var(--base-button, #e6e5e5);
   background: var(--base-input, #ededed);
+
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `
 
 export const Row = styled.div`
@@ -124,7 +131,7 @@ export const Row = styled.div`
   align-self: stretch;
 `
 
-export const ButtonPayment = styled.button`
+export const ButtonPayment = styled.button<{ selected: boolean }>`
   display: flex;
   padding: 1rem;
   align-items: center;
@@ -141,9 +148,9 @@ export const ButtonPayment = styled.button`
   line-height: 160%;
   text-transform: uppercase;
 
-  border-radius: 0.25rem;
+  /* border-radius: 0.25rem;
   border: 1px solid var(--base-button, #e6e5e5);
-  background: var(--base-input, #ededed);
+  background: var(--base-input, #ededed); */
 
   :hover {
     border-radius: 0.375rem;
@@ -155,6 +162,16 @@ export const ButtonPayment = styled.button`
     border: 1px solid var(--brand-purple, #8047f8);
     background: var(--brand-purple-light, #ebe5f9);
   }
+
+  border-radius: ${({ selected }) => (selected ? '0.375rem' : '0.25rem')};
+  border: ${({ selected }) =>
+    selected
+      ? '1px solid var(--brand-purple, #8047f8)'
+      : '1px solid var(--base-button, #e6e5e5)'};
+  background: ${({ selected }) =>
+    selected
+      ? 'var(--brand-purple-light, #ebe5f9)'
+      : 'var(--base-input, #ededed)'};
 `
 
 export const BankIcon = styled(AiOutlineBank)`

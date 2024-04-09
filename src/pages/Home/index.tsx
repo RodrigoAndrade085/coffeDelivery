@@ -31,13 +31,15 @@ import CoffeImg from '../../assets/Imagem.svg'
 import { useContext, useState } from 'react'
 import { Coffes } from './utils'
 import { CartContext } from '../../contexts/CartContext'
+import { formatToNumberBr } from '../../utils/formatToNumber'
+import { toast } from 'react-toastify'
 
 export interface CardTypes {
   key: number
   img: string
   name: string
   description: string
-  price: string
+  price: number
   category: string[]
   qtd: number
 }
@@ -89,6 +91,7 @@ export function Home() {
 
     if (!carts) {
       updateCarts([coffeSelected])
+      toast.success('Adicionado ao carrinho com sucesso')
       return
     }
 
@@ -100,6 +103,7 @@ export function Home() {
       const newCart = [...carts, coffeSelected]
 
       updateCarts(newCart)
+      toast.success('Adicionado ao carrinho com sucesso')
       return
     }
 
@@ -109,6 +113,7 @@ export function Home() {
     }
 
     updateCarts(carts)
+    toast.success('Adicionado ao carrinho com sucesso')
   }
 
   return (
@@ -170,7 +175,7 @@ export function Home() {
                   <SubTitleCard>{coffe.description}</SubTitleCard>
                   <ButtonCart>
                     <span>
-                      R$ <b>{coffe.price}</b>
+                      <b>{formatToNumberBr(coffe.price)}</b>
                     </span>
 
                     <ContainerSpiner>

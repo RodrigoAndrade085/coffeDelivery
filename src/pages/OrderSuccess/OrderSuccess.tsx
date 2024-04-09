@@ -12,8 +12,25 @@ import {
 } from './styles'
 
 import Img from '../../assets/Delivery.svg'
+import { useLocation } from 'react-router-dom'
+import { EnumPayment, NewOrderCart } from '../OrderPayment'
 
 export function OrderSuccess() {
+  const location = useLocation()
+
+  const orderSuccess: NewOrderCart = location.state?.order
+
+  function renderLabelPayment(typePayment: number) {
+    switch (true) {
+      case typePayment === EnumPayment.credito:
+        return 'Cartão de crédito!'
+      case typePayment === EnumPayment.debito:
+        return 'Cartão de débito!'
+      default:
+        return 'Dinheiro!'
+    }
+  }
+
   return (
     <ContainerPage>
       <Title>Uhu! Pedido confirmado</Title>
@@ -27,9 +44,14 @@ export function OrderSuccess() {
             </ContainerIcon>
             <div>
               <p>
-                Entrega em <b> Rua João Daniel Marinelli, 102 </b>
+                Entrega em
+                <b>
+                  {orderSuccess.street}, {orderSuccess.number}
+                </b>
               </p>
-              <p> Farrapos - Porto Alegre, RS</p>
+              <p>
+                - {orderSuccess.city}, {orderSuccess.state}
+              </p>
             </div>
           </ContentInfo>
           <ContentInfo>
@@ -47,7 +69,7 @@ export function OrderSuccess() {
             </ContainerIcon>
             <div>
               <p>Pagamento na entrega</p>
-              <b>Cartão de Crédito</b>
+              <b>{renderLabelPayment(orderSuccess.PaymentMathod)}</b>
             </div>
           </ContentInfo>
         </ContainerInfo>
