@@ -12,11 +12,13 @@ import {
 } from './styles'
 
 import Img from '../../assets/Delivery.svg'
-import { useLocation } from 'react-router-dom'
+import { Navigate, useNavigate, redirect, useLocation } from 'react-router-dom'
 import { EnumPayment, NewOrderCart } from '../OrderPayment'
+import { useEffect } from 'react'
 
 export function OrderSuccess() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const orderSuccess: NewOrderCart = location.state?.order
 
@@ -30,6 +32,12 @@ export function OrderSuccess() {
         return 'Dinheiro!'
     }
   }
+
+  useEffect(() => {
+    if (!orderSuccess) {
+      navigate('/')
+    }
+  }, [orderSuccess])
 
   return (
     <ContainerPage>
@@ -46,11 +54,11 @@ export function OrderSuccess() {
               <p>
                 Entrega em
                 <b>
-                  {orderSuccess.street}, {orderSuccess.number}
+                  {orderSuccess?.street}, {orderSuccess?.number}
                 </b>
               </p>
               <p>
-                - {orderSuccess.city}, {orderSuccess.state}
+                - {orderSuccess?.city}, {orderSuccess?.state}
               </p>
             </div>
           </ContentInfo>
@@ -69,7 +77,7 @@ export function OrderSuccess() {
             </ContainerIcon>
             <div>
               <p>Pagamento na entrega</p>
-              <b>{renderLabelPayment(orderSuccess.PaymentMathod)}</b>
+              <b>{renderLabelPayment(orderSuccess?.PaymentMathod)}</b>
             </div>
           </ContentInfo>
         </ContainerInfo>
