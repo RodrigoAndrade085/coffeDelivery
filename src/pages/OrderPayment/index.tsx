@@ -144,6 +144,10 @@ export function OrderPayment() {
   }
 
   function handleOrderAddress(order: NewOrderCart) {
+    if (!carts.length) {
+      return toast.error('Nenhum café selecionado')
+    }
+
     navigate('/order-success', {
       state: {
         order,
@@ -157,7 +161,7 @@ export function OrderPayment() {
   const selectedPayment = watch('PaymentMathod')
 
   return (
-    <Container onSubmit={handleSubmit(handleOrderAddress)} action="">
+    <Container onSubmit={handleSubmit(handleOrderAddress)}>
       <ContainerOrder>
         <h3>Complete seu pedido</h3>
         <Card>
