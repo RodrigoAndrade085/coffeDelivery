@@ -2,6 +2,7 @@
 
 ### :clipboard: Dashboard: 
 
+
 ##### :clipboard: Dashboard inicial sem cafés selecionados: 
 Tela inicial quando se entra pela primeira vez no site, Não terá nenhum café adicionado ao carrinho. Nela podemos ver o carrinho com um contador dos café já adicionados além da logo ser clicavel para voltar para a tela caso o usuário queira voltar para a tela inicial.
 ![dashboard](https://github.com/RodrigoAndrade085/coffeDelivery/blob/main/src/assets/docImg/dashboard.png)
