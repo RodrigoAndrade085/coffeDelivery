@@ -116,6 +116,10 @@ export function Home() {
     toast.success('Adicionado ao carrinho com sucesso')
   }
 
+  function getTotalCartItems(cart: CardTypes[]): number {
+    return cart.reduce((total, item) => total + item.qtd, 0)
+  }
+
   return (
     <>
       <Container>
