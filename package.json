@@ -17,7 +17,7 @@
     "react-router-dom": "^6.10.0",
     "react-toastify": "^10.0.4",
     "styled-components": "^5.3.9",
-    "zod": "^3.22.4"
+    "zod": "^3.25.56"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",
